@@ -4,6 +4,8 @@ using Autofac;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
+using ReactiveUI;
 using Splat.Autofac;
 using VolunteerHub;
 
@@ -16,6 +18,7 @@ public partial class App : Application
        
         AvaloniaXamlLoader.Load(this);
         Bootstrapper.Init();
+        RxApp.MainThreadScheduler = AvaloniaScheduler.Instance;
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -36,7 +39,7 @@ public partial class App : Application
             };
         }
 
-        DataContext.Router.NavigateAndReset.Execute(GetRequiredService<AuthViewModel>());
+        DataContext.Router.NavigateAndReset.Execute(GetRequiredService<HomeViewModel>());
         base.OnFrameworkInitializationCompleted();
     }
 

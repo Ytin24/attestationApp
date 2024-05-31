@@ -1,9 +1,11 @@
-﻿using attestationApp.ViewModels;
+﻿using attestationApp.DB;
+using attestationApp.ViewModels;
 using attestationApp.Views;
 using Autofac;
 using ReactiveUI;
 using Splat;
 using Splat.Autofac;
+using System.Linq;
 using System.Reflection;
 
 namespace attestationApp
@@ -15,6 +17,9 @@ namespace attestationApp
             var builder = new ContainerBuilder();
 
             builder.RegisterModule<AutofacRegisterAllMVVM>();
+            builder.RegisterType<AttestationDbContext>()
+                .AsSelf()
+                .SingleInstance();
 
             AutofacDependencyResolver resolver = new AutofacDependencyResolver(builder);
             Locator.SetLocator(resolver);
@@ -29,21 +34,18 @@ namespace attestationApp
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Регистрация всех View
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                   .Where(t => t.Name.EndsWith("View"))
-                   .AsSelf();
-
             // Регистрация всех ViewModel
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                    .Where(t => t.Name.EndsWith("ViewModel"))
                    .AsImplementedInterfaces()
-                   .AsSelf();
+                   .AsSelf()
+                   .SingleInstance();
 
             // Регистрация всех сервисов
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                    .Where(t => t.Name.EndsWith("Service"))
-                   .AsImplementedInterfaces();
+                   .AsImplementedInterfaces()
+                   .SingleInstance();
         }
     }
 }

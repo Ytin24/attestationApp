@@ -18,11 +18,6 @@ public class AuthViewModel : ViewModelBase {
 
     public AuthViewModel(IScreen screen, RegistrationViewModel registrationViewModel) : base(screen)
     {
-
-        GoToRegisterAccount = 
-            ReactiveCommand.CreateFromObservable(
-                () => HostScreen.Router.Navigate.Execute(registrationViewModel)
-            );
+        GoToRegisterAccount = ReactiveCommand.CreateFromObservable(() => HostScreen.Router.NavigateAndReset.Execute(registrationViewModel));
     }
-    
 }

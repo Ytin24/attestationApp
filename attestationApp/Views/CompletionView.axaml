@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 x:Class="attestationApp.Views.CompletionView"
+			 
+             d:DesignWidth="800" d:DesignHeight="600">
+	<StackPanel Margin="20">
+		<TextBlock Text="Thank you for completing the test!" FontSize="24" Margin="0,0,0,20"/>
+		<Button Content="Close" Command="{Binding CloseCommand}" Margin="0,0,0,10"/>
+		<Button Content="Restart" Command="{Binding RestartCommand}"/>
+	</StackPanel>
+</UserControl>

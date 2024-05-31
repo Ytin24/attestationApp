@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 x:Class="attestationApp.Views.HomeView"
+			 
+             d:DesignWidth="800" d:DesignHeight="600">
+	<StackPanel Margin="20" HorizontalAlignment="Center">
+		<TextBlock Text="Привет, давай знакомиться!" FontSize="24" Margin="0,0,0,20"/>
+		<TextBox Watermark="Твоя фамилия" Text="{Binding FullName}" Margin="0,0,0,10"/>
+		<TextBox Watermark="ТВое имя" Text="{Binding LastName}" Margin="0,0,0,10"/>
+		<TextBox Watermark="Твое отчество (если есть*)" Text="{Binding Patronymic}" Margin="0,0,0,10"/>
+		<DatePicker SelectedDate="{Binding Birthdate}" Margin="0,0,0,10"/>
+		<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" Margin="0,0,0,10">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Title}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<ComboBox ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest}" Margin="0,0,0,20">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Id}" />
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<Button Content="Приступим" Command="{Binding SubmitCommand}"/>
+	</StackPanel>
+</UserControl>
