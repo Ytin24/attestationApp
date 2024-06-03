@@ -103,7 +103,7 @@ namespace attestationApp.ViewModels
                 FullName = FullName,
                 LastName = LastName,
                 Patronymic = Patronymic,
-                Birthdate = Birthdate.LocalDateTime,
+                Birthdate = Birthdate.DateTime,
                 GenderId = SelectedGender.Id
             };
             if (_service.CurrentStudent != null)
@@ -116,6 +116,7 @@ namespace attestationApp.ViewModels
             }
             else
             {
+
                 _service.CurrentStudent = student;
                 student = await _service.CreateStudentAsync(student);
             }

@@ -91,7 +91,8 @@ namespace attestationApp.Services
 
         public async Task<Student> CreateStudentAsync(Student student)
         {
-            var x = await _context.Students.AsNoTracking().FirstOrDefaultAsync(x => x.Equals(student));
+            var a = _context.Students.ToList();
+            var x = _context.Students.AsNoTracking().ToList().FirstOrDefault(student.Equals);
             if (x != null)
             {
                 return x;

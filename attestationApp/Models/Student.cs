@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace attestationApp.Models;
 
@@ -24,23 +25,22 @@ public partial class Student
     public virtual ICollection<Direction> Directions { get; set; } = new List<Direction>();
     public override bool Equals(object? obj)
     {
-        if(obj == null)
-            return false;
-        if(obj.GetType() != typeof(Student))
+        
+
+        if (obj == null || obj.GetType() != typeof(Student))
             return false;
 
         var item = obj as Student;
-        if (item.FullName != FullName)
-            return false;
-        else if (item.LastName != LastName)
-            return false;
-        else if (item.Patronymic != Patronymic)
-            return false;
-        else if ( item.GenderId!= GenderId)
-            return false;
-        else if (item.Birthdate!= Birthdate)
-            return false;
-        else 
-            return true;
+        Debug.WriteLine($"Expected: {item.FullName}, Actual: {FullName}");
+        Debug.WriteLine($"Expected: {item.LastName}, Actual: {LastName}");
+        Debug.WriteLine($"Expected: {item.Patronymic}, Actual: {Patronymic}");
+        Debug.WriteLine($"Expected: {item.Birthdate}, Actual: {Birthdate}");
+        Debug.WriteLine($"Expected: {item.GenderId}, Actual: {GenderId}");
+        return FullName == item.FullName &&
+               LastName == item.LastName &&
+               Patronymic == item.Patronymic &&
+               GenderId == item.GenderId &&
+               Birthdate == item.Birthdate;
     }
+
 }
