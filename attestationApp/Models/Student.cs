@@ -22,4 +22,25 @@ public partial class Student
     public virtual ICollection<Result> Results { get; set; } = new List<Result>();
 
     public virtual ICollection<Direction> Directions { get; set; } = new List<Direction>();
+    public override bool Equals(object? obj)
+    {
+        if(obj == null)
+            return false;
+        if(obj.GetType() != typeof(Student))
+            return false;
+
+        var item = obj as Student;
+        if (item.FullName != FullName)
+            return false;
+        else if (item.LastName != LastName)
+            return false;
+        else if (item.Patronymic != Patronymic)
+            return false;
+        else if ( item.GenderId!= GenderId)
+            return false;
+        else if (item.Birthdate!= Birthdate)
+            return false;
+        else 
+            return true;
+    }
 }

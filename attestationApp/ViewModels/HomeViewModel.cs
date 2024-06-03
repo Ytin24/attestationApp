@@ -28,6 +28,15 @@ namespace attestationApp.ViewModels
             SubmitCommand = ReactiveCommand.CreateFromTask(SubmitAsync);
             LoadDataCommand = ReactiveCommand.CreateFromTask(LoadDataAsync);
             LoadDataCommand.Execute().Subscribe();
+            CheckCurrentUser();
+        }
+
+        private void CheckCurrentUser()
+        {
+            if (_service.CurrentStudent == null)
+            {
+                return;
+            }
         }
 
         public string FullName
@@ -88,6 +97,7 @@ namespace attestationApp.ViewModels
 
         private async Task SubmitAsync()
         {
+            
             var student = new Student
             {
                 FullName = FullName,
@@ -96,8 +106,19 @@ namespace attestationApp.ViewModels
                 Birthdate = Birthdate.LocalDateTime,
                 GenderId = SelectedGender.Id
             };
-
-            student = await _service.CreateStudentAsync(student);
+            if (_service.CurrentStudent != null)
+            {
+                if (!_service.CurrentStudent.Equals(student))
+                {
+                    _service.CurrentStudent = student;
+                    student = await _service.CreateStudentAsync(student);
+                }
+            }
+            else
+            {
+                _service.CurrentStudent = student;
+                student = await _service.CreateStudentAsync(student);
+            }
             if(student == null)
             {
                 throw new Exception();

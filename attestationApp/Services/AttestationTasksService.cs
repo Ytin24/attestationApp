@@ -77,12 +77,17 @@ namespace attestationApp.Services
 
         public async Task<Student> CreateStudentAsync(Student student)
         {
+            var x = await _context.Students.AsNoTracking().FirstOrDefaultAsync(x => x.Equals(student));
+            if (x != null)
+            {
+                return x;
+            }
+
             try
             {
                 _context.Students.Add(student);
             
                 await _context.SaveChangesAsync();
-
             }
             catch(Exception ex) 
             {

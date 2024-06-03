@@ -6,9 +6,12 @@
 			 x:Class="attestationApp.Views.CompletionView"
 			 
              d:DesignWidth="800" d:DesignHeight="600">
-	<StackPanel Margin="20">
-		<TextBlock Text="Thank you for completing the test!" FontSize="24" Margin="0,0,0,20"/>
-		<Button Content="Close" Command="{Binding CloseCommand}" Margin="0,0,0,10"/>
-		<Button Content="Restart" Command="{Binding RestartCommand}"/>
+	<StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBlock Text="Спасибо за ответ!" FontSize="24" Margin="0,0,0,20"/>
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Spacing="10">
+			<Button IsVisible="False" Content="Close" Command="{Binding CloseCommand}" Margin="0,0,0,10"/>
+			<Button Content="Начать заново" Command="{Binding RestartCommand}"/>
+		</StackPanel>
+
 	</StackPanel>
 </UserControl>

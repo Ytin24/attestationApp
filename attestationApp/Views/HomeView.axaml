@@ -6,26 +6,35 @@
 			 x:Class="attestationApp.Views.HomeView"
 			 
              d:DesignWidth="800" d:DesignHeight="600">
-	<StackPanel Margin="20" HorizontalAlignment="Center">
+	<StackPanel Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
 		<TextBlock Text="Привет, давай знакомиться!" FontSize="24" Margin="0,0,0,20"/>
-		<TextBox Watermark="Твоя фамилия" Text="{Binding FullName}" Margin="0,0,0,10"/>
-		<TextBox Watermark="ТВое имя" Text="{Binding LastName}" Margin="0,0,0,10"/>
-		<TextBox Watermark="Твое отчество (если есть*)" Text="{Binding Patronymic}" Margin="0,0,0,10"/>
-		<DatePicker SelectedDate="{Binding Birthdate}" Margin="0,0,0,10"/>
-		<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" Margin="0,0,0,10">
-			<ComboBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Title}" />
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<ComboBox ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest}" Margin="0,0,0,20">
-			<ComboBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Id}" />
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<Button Content="Приступим" Command="{Binding SubmitCommand}"/>
+		<TextBox Watermark="Твоя фамилия" Text="{Binding FullName}" Margin="0,0,0,10" HorizontalContentAlignment="Center"/>
+		<TextBox Watermark="Твое имя" Text="{Binding LastName}" Margin="0,0,0,10" HorizontalContentAlignment="Center"/>
+		<TextBox Watermark="Твое отчество (если есть*)" Text="{Binding Patronymic}" Margin="0,0,0,10" HorizontalContentAlignment="Center"/>
+		<DatePicker SelectedDate="{Binding Birthdate}" Margin="0,0,0,10" HorizontalAlignment="Stretch"/>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+			<StackPanel>
+				<TextBlock>Твой пол</TextBlock>
+				<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" Margin="0,0,0,10">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Title}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+			<StackPanel>
+				<TextBlock>№Вопроса</TextBlock>
+				<ComboBox ItemsSource="{Binding Tests}" SelectedItem="{Binding SelectedTest}" Margin="0,0,0,20">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Id}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+			</StackPanel>
+		</StackPanel>
+		
+		<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Приступим!" Command="{Binding SubmitCommand}"/>
 	</StackPanel>
 </UserControl>

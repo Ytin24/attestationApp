@@ -11,8 +11,8 @@ namespace attestationApp.ViewModels
         public CompletionViewModel(IScreen screen) : base(screen)
         {
             RestartCommand = ReactiveCommand.Create(RestartApplication);
-        }
 
+        }
         public ReactiveCommand<Unit, Unit> CloseCommand { get; }
         public ReactiveCommand<Unit, Unit> RestartCommand { get; }
 
